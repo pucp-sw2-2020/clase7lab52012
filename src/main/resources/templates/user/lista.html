@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>GameShop 2!!!</title>
+        <link rel="shortcut icon" th:href="@{img/store_icon.png}" href="img/store_icon.png">
+        <link rel="stylesheet" th:href="@{css/bootstrap.css}" href="css/bootstrap.css">
+        <script type="text/javascript" th:src="@{js/jquery-1.7.2.min.js}" src="js/jquery-1.7.2.min.js"></script>
+    </head>
+    <body>
+        <%-- Navbar superior--%>
+        <div class="navbar navbar-fixed-top" style="position: relative">
+            <div class="navbar-inner">
+                <div class="container" style="width: auto; padding: 0 20px;">
+                    <ul class="nav">
+                        <li class="active"><a th:text="|${session.usuario.nombres} ${session.usuario.apellidos} (${session.usuario.correo})|" href="#"></a></li>
+                    </ul>
+                    <a href="<%=request.getContextPath()%>/ServletLogout" class="btn pull-right">Cerrar Sessión</a>
+                </div>
+            </div>
+        </div>
+        <%-- Panel Superior--%>
+        <div>
+            <div class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <header class="unit hero-unit">
+                            <h1>GameShop 2!!!</h1><br>
+                            <p>Mis Juegos</p>
+                        </header>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row-fluid" style=" width: 80%; padding:0 10%;">
+            <%-- Lista de opciones --%>
+            <div class="span2">
+                <ul class="nav nav-list well">
+                    <li><a href="<%=request.getContextPath()%>/view/user    "><i class="icon-home icon-white"></i> Inicio</a></li>
+                    <li class="active"><a th:href="@{/user/misjuegos}"><i class="icon-chevron-right"></i> Mis Juegos</a></li>
+                    <li><a href="<%=request.getContextPath()%>/ServletJuego?action=gamestore"><i class="icon-chevron-right"></i> Tienda</a></li>
+                </ul>
+            </div>
+            <%-- Tabla con los datos --%>
+            <div class="span10">
+                <div class="well form-horizontal-search">
+                    <form class="form-horizontal" action="<%=request.getContextPath()%>/ServletJuego?action=viewall" method="post">
+                        <div class="control-group">
+                            <label class="control-label">Nombre</label>
+                            <div class="controls">
+                                <input class="span4" type="text" name="nombre" value="" placeholder="Type something…">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Género</label>
+                            <div class="controls">
+                                <select name="idgenero">
+                                    <option value="0">Todos</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Plataforma</label>
+                            <div class="controls">
+                                <select name="idplataforma">
+                                    <option value="0">Todos</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <input class="btn btn-info" type="submit" value="Buscar"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <table class="items table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Genero</th>
+                            <th>Plataforma</th>
+                            <th>Editora</th>
+                            <th>Distribuidora</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th th:text=""></th>
+                            <th th:text=""></th>
+                            <th th:text=""></th>
+                            <th th:text=""></th>
+                            <th th:text=""></th>
+                            <th th:text=""></th>
+                            <th th:text=""></th>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <%-- Footer --%>
+        <div class="container"  style="padding-top: 50px;"><hr>
+            <footer class="footer">
+                <p style="text-align: center;">
+                    &copy; 2012 Software para Telecomunicaciones 2 - Pontificia Universidad Católica del Perú<br>
+                    Comentarios y/o sugerencias: <a href="mailto:jbarturen@pucp.pe">jbarturen@pucp.pe</a></p>
+
+            </footer></div>
+    </body>
+</html>

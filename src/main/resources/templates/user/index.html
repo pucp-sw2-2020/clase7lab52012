@@ -36,7 +36,7 @@
             <div class="span2">
                 <ul class="nav nav-list well">
                     <li  class="active"><a href="<%=request.getContextPath()%>/view/user    "><i class="icon-home icon-white"></i> Inicio</a></li>
-                    <li><a href="<%=request.getContextPath()%>/ServletJuego?action=viewall"><i class="icon-chevron-right"></i> Mis Juegos</a></li>
+                    <li><a th:href="@{/user/misjuegos}"><i class="icon-chevron-right"></i> Mis Juegos</a></li>
                     <li><a href="<%=request.getContextPath()%>/ServletJuego?action=gamestore"><i class="icon-chevron-right"></i> Tienda</a></li>
                 </ul>
             </div>
