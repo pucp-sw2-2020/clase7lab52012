@@ -1,45 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>GameShop 2!!!</title>
-        <link rel="shortcut icon" th:href="@{img/store_icon.png}" href="img/store_icon.png">
-        <link rel="stylesheet" th:href="@{css/bootstrap.css}" href="css/bootstrap.css">
-        <script type="text/javascript" th:src="@{js/jquery-1.7.2.min.js}" src="js/jquery-1.7.2.min.js"></script>
-    </head>
+    <head th:replace="fragment.html :: cabecera"> </head>
     <body>
-        <div class="navbar navbar-fixed-top" style="position: relative">
-            <div class="navbar-inner">
-                <div class="container" style="width: auto; padding: 0 20px;">
-                    <ul class="nav">
-                        <li class="active"><a th:text="|${session.usuario.nombres} ${session.usuario.apellidos} (${session.usuario.correo})|" href="#"></a></li>
-                    </ul>
-                    <a href="<%=request.getContextPath()%>/ServletLogout" class="btn pull-right">Cerrar Sessión</a>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="carousel slide">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <header class="unit hero-unit">
-                            <h1>GameShop 2!!!</h1><br>
-                            <p>P&aacute;gina de Inicio</p>
-                        </header>
-                    </div>
-                </div>
-            </div>
+        <div th:replace="fragment.html :: navbar"></div>
+        <div th:replace="fragment.html :: carousel" >
         </div>
         <br>
-
         <div class="row-fluid" style=" width: 80%; padding:0 10%;">
-            <div class="span2">
-                <ul class="nav nav-list well">
-                    <li  class="active"><a href="<%=request.getContextPath()%>/view/user    "><i class="icon-home icon-white"></i> Inicio</a></li>
-                    <li><a th:href="@{/user/misjuegos}"><i class="icon-chevron-right"></i> Mis Juegos</a></li>
-                    <li><a href="<%=request.getContextPath()%>/ServletJuego?action=gamestore"><i class="icon-chevron-right"></i> Tienda</a></li>
-                </ul>
-            </div>
+            <div th:replace="fragment.html :: listaOpciones(opcion='inicio')"></div>
             <div class="span2">
                 <img th:src="@{/img/wiiu.jpg}" class="span2">
             </div>

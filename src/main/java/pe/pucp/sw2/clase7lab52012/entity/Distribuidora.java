@@ -1,7 +1,13 @@
 package pe.pucp.sw2.clase7lab52012.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
 @Entity
 @Table(name="distribuidoras")
-public class Distribuidoras {
+public class Distribuidora  implements Serializable {
     @Id
     private int iddistribuidora;
     private String nombre;

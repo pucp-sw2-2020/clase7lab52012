@@ -21,12 +21,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/")
                 .loginProcessingUrl("/ingresar")
                 .usernameParameter("correo")
-                .defaultSuccessUrl("/redirectByRol");
+                .defaultSuccessUrl("/redirectByRol", true);
+
+        http.logout().logoutSuccessUrl("/").deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
 
         //el tiempo esta en segundos
         http.rememberMe().tokenValiditySeconds(86400).rememberMeParameter("recordar");
 
-        http.authorizeRequests().antMatchers("/user","/user/**").hasAnyAuthority("user","admin");
+        http.authorizeRequests().antMatchers("/user", "/user/**").hasAnyAuthority("user", "admin");
         http.authorizeRequests().anyRequest().permitAll();
     }
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragment.html :: cabecera"> </head>
+    <body>
+        <div th:replace="fragment.html :: navbar"></div>
+        <div th:replace="fragment.html :: carousel" >
+        </div>
+        <br>
+        <div class="row-fluid" style=" width: 80%; padding:0 10%;">
+            <div th:replace="fragment.html :: listaOpciones(opcion='tienda')"></div>
+            <div class="span10">
+                <form th:if="${session.juegosCarritoDeCompras.size() >0}" class="form-horizontal" th:action="@{/user/comprar}" method="post">
+                    <table class="items table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Genero</th>
+                                <th>Plataforma</th>
+                                <th>Editora</th>
+                                <th>Distribuidora</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr th:each="juego : ${session.juegosCarritoDeCompras}">
+                                <th th:text="${juego.nombre}"></th>
+                                <th th:text="${juego.descripcion}"></th>
+                                <th th:text="${juego.precio}"></th>
+                                <th th:text="${juego.getGenero().nombre}"></th>
+                                <th th:text="${juego.getPlataforma().nombre}"></th>
+                                <th th:text="${juego.getEditor().nombre}"></th>
+                                <th th:text="${juego.getDistribuidora().nombre}"></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="control-group">
+                        <div class="controls">
+                            <input class="btn btn-success pull-right" type="submit" value="Comprar"/>
+                        </div>
+                    </div>
+                    <input type="hidden" name="games" value="" >
+                </form>
+                <h2 th:unless="${session.juegosCarritoDeCompras.size() >0}">Su carrito de compras está vacío</h2>
+            </div>
+        </div>
+        <div class="container"  style="padding-top: 50px;"><hr>
+            <footer class="footer">
+                <p style="text-align: center;">
+                    &copy; 2012 Software para Telecomunicaciones 2 - Pontificia Universidad Católica del Perú<br>
+                    Comentarios y/o sugerencias: <a href="mailto:jbarturen@pucp.pe">jbarturen@pucp.pe</a></p>
+
+            </footer></div>
+    </body>
+</html>
+

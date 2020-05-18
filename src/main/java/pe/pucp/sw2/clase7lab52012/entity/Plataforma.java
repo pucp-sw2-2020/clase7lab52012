@@ -2,18 +2,26 @@ package pe.pucp.sw2.clase7lab52012.entity;
 
 import com.sun.javafx.beans.IDProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Plataformas {
+@Table(name = "plataformas")
+public class Plataforma implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idplataforma;
     private String nombre;
     private String descripcion;
+
+    public int getIdplataforma() {
+        return idplataforma;
+    }
+
+    public void setIdplataforma(int idplataforma) {
+        this.idplataforma = idplataforma;
+    }
 
     public String getNombre() {
         return nombre;

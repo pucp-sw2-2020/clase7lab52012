@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import pe.pucp.sw2.clase7lab52012.entity.Juego;
 import pe.pucp.sw2.clase7lab52012.entity.Usuario;
 import pe.pucp.sw2.clase7lab52012.repository.UsuarioRepository;
 
@@ -28,6 +29,8 @@ public class LoginController {
 
         Usuario u = usuarioRepository.findByCorreo(auth.getName());
         httpSession.setAttribute("usuario",u);
+        ArrayList<Juego> juegosCarritoDeCompras = new ArrayList<>();
+        httpSession.setAttribute("juegosCarritoDeCompras",juegosCarritoDeCompras);
 
         if(roles.contains("user") && !roles.contains("admin")){
             return "redirect:/user";

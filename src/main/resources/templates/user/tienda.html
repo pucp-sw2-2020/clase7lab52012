@@ -7,10 +7,10 @@
         </div>
         <br>
         <div class="row-fluid" style=" width: 80%; padding:0 10%;">
-            <div th:replace="fragment.html :: listaOpciones(opcion='juegos')"></div>
+            <div th:replace="fragment.html :: listaOpciones(opcion='tienda')"></div>
             <div class="span10">
                 <div class="well form-horizontal-search">
-                    <form class="form-horizontal" action="<%=request.getContextPath()%>/ServletJuego?action=viewall" method="post">
+                    <form class="form-horizontal" action="<%=request.getContextPath()%>/ServletJuego?action=gamestore" method="post">
                         <div class="control-group">
                             <label class="control-label">Nombre</label>
                             <div class="controls">
@@ -45,33 +45,42 @@
                     </form>
                 </div>
 
-                <table class="items table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Precio</th>
-                            <th>Genero</th>
-                            <th>Plataforma</th>
-                            <th>Editora</th>
-                            <th>Distribuidora</th>
-                    </thead>
-                    <tbody>
-                        <tr th:each="juego : ${listaJuegos}">
-                            <th th:text="${juego.nombre}"></th>
-                            <th th:text="${juego.descripcion}"></th>
-                            <th th:text="${juego.precio}"></th>
-                            <th th:text="${juego.getGenero().nombre}"></th>
-                            <th th:text="${juego.getPlataforma().nombre}"></th>
-                            <th th:text="${juego.getEditor().nombre}"></th>
-                            <th th:text="${juego.getDistribuidora().nombre}"></th>
-                        </tr>
-                    </tbody>
-                </table>
 
+
+                <form class="form-horizontal" action="<%=request.getContextPath()%>/ServletJuego?action=buy" method="post">
+                    <table class="items table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Genero</th>
+                                <th>Plataforma</th>
+                                <th>Editora</th>
+                                <th>Distribuidora</th>
+                                <th class="button-column">
+                                    <a th:href="@{/user/comprar}"> Ir a Comprar <span class="badge badge-info" th:text="${session.juegosCarritoDeCompras.size()}"></span></a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="juego : ${listaJuegos}">
+                                <th th:text="${juego.nombre}"></th>
+                                <th th:text="${juego.descripcion}"></th>
+                                <th th:text="${juego.precio}"></th>
+                                <th th:text="${juego.getGenero().nombre}"></th>
+                                <th th:text="${juego.getPlataforma().nombre}"></th>
+                                <th th:text="${juego.getEditor().nombre}"></th>
+                                <th th:text="${juego.getDistribuidora().nombre}"></th>
+                                <td>
+                                    <a class="update" title="Select" th:href="@{'/user/anadirCarrito?id=' + ${juego.idjuego} }"> Añadir <i class="icon-shopping-cart"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
-
         <div class="container"  style="padding-top: 50px;"><hr>
             <footer class="footer">
                 <p style="text-align: center;">
@@ -81,3 +90,4 @@
             </footer></div>
     </body>
 </html>
+

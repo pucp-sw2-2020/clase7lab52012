@@ -3,10 +3,11 @@ package pe.pucp.sw2.clase7lab52012.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "editoras")
-public class Editor {
+public class Editor  implements Serializable {
     @Id
     private int ideditora;
     private String nombre;

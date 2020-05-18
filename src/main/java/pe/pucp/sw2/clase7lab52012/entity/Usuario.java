@@ -1,10 +1,11 @@
 package pe.pucp.sw2.clase7lab52012.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -14,6 +15,21 @@ public class Usuario implements Serializable {
     private String nombres;
     private String apellidos;
     private String correo;
+
+    @ManyToMany
+    @JoinTable(
+            name = "juegosxusuario",
+            joinColumns = @JoinColumn(name = "idusuario"),
+            inverseJoinColumns = @JoinColumn(name = "idjuego"))
+    private List<Juego> listaJuegos;
+
+    public List<Juego> getListaJuegos() {
+        return listaJuegos;
+    }
+
+    public void setListaJuegos(List<Juego> listaJuegos) {
+        this.listaJuegos = listaJuegos;
+    }
 
     //private ArrayList<String> listaRoles;
 
